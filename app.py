@@ -443,7 +443,7 @@ with takeaway_col[3]:
         Chatbots let users iteratively refine answers, leaving room for fluid, human-like conversations with the LLM. Conversely, :orange[**{100-st_chat_input_and_chat_message_pct}**%] of LLM apps use text inputs with a single objective, generally not allowing for conversational refinement.
     """, unsafe_allow_html=True)
 
-    add_vertical_space(1)
+    add_vertical_space(2)
     
     redirect_button('#are-chatbots-the-future', 'Are chatbots the future?') 
 
