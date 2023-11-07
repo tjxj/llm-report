@@ -855,8 +855,7 @@ def sort_opensource_tools(input_df, input_column):
     average_weekly_app_count = df_recent_weeks.groupby('MODEL_TYPE')[input_column].mean()
     sorted_models = average_weekly_app_count.sort_values(ascending=False)
     return sorted_models.reset_index().iloc[:,0].to_list()
-
-
+    
 #def calculate_weekly_app_count(input_df):
 #    # Step 1: Calculate WEEKLY_APP_COUNT for each LLM_MODEL
 #    weekly_app_count_df = input_df.groupby(['LLM_MODEL', 'WEEK_START'])['SUBDOMAIN'].nunique().reset_index()
@@ -911,12 +910,13 @@ def calculate_weekly_app_count(input_df, input_df_full, input_tool_options):
     #result_df['WEEKLY_APP_COUNT'].fillna('NA', inplace=True)
     result_df = result_df[result_df['WEEKLY_APP_COUNT'] != None]
 
-    result_df['WEEKLY_PCT'] = (result_df['WEEKLY_APP_COUNT']/result_df['TOTAL_WEEKLY_APP_COUNT']) * 100
-    result_df = result_df.round({'WEEKLY_PCT': 1})
+    result_df['WEEKLY_PCT'] = (result_df['WEEKLY_APP_COUNT']/result_df['TOTAL_WEEKLY_APP_COUNT'])
+    #result_df = result_df.round({'WEEKLY_PCT': 1})
 
     return result_df
 
 # calculate_weekly_app_count(input_df, input_df_full, input_tool_options)
+
 
 
 def redirect_button(url: str, text: str= None, color="#F63366"):
