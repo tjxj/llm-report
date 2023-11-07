@@ -874,7 +874,7 @@ def calculate_weekly_app_count(input_df):
     # If you want to replace NaN values in WEEKLY_APP_COUNT with 'NA' as well:
     result_df['WEEKLY_APP_COUNT'].fillna('NA', inplace=True)
     result_df['WEEKLY_PCT'] = (result_df['WEEKLY_APP_COUNT']/result_df['TOTAL_WEEKLY_APP_COUNT']) * 100
-    result_df = result_df.round({'WEEKLY_PCT': 2})
+    result_df = result_df.round({'WEEKLY_PCT': 1})
 
     return result_df
 
