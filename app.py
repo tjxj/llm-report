@@ -357,7 +357,7 @@ with takeaway_col[0]:
           </b> use GPT <br> models
         </h4>
 
-        OpenAI has become the standard for LLM apps due to its pioneering GPT research, high-quality outputs, steerability, and accessible API. Their first-mover debut of ChatGPT and large transformer-based models sparked the imagination of developers, and the world, at large.
+        OpenAI has become the standard for LLM apps due to its pioneering GPT research, high-quality outputs, steerability, and accessible API. Their first-mover debut of ChatGPT and large transformer models sparked the imagination of developers, and the world, at large.
     """, unsafe_allow_html=True)
 
     redirect_button('#top-models', 'Top models')
