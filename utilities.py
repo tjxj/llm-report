@@ -908,8 +908,8 @@ def calculate_weekly_app_count(input_df, input_df_full, input_tool_options):
     result_df = weekly_app_count_df.merge(total_weekly_app_df, on=['LLM_MODEL', 'WEEK_START'], how='right')
 
     # If you want to replace NaN values in WEEKLY_APP_COUNT with 'NA' as well:
-    result_df['WEEKLY_APP_COUNT'].fillna('NA', inplace=True)
-    result_df = result_df[result_df['WEEKLY_APP_COUNT'] != 'NA']
+    #result_df['WEEKLY_APP_COUNT'].fillna('NA', inplace=True)
+    result_df = result_df[result_df['WEEKLY_APP_COUNT'] != None]
 
     result_df['WEEKLY_PCT'] = (result_df['WEEKLY_APP_COUNT']/result_df['TOTAL_WEEKLY_APP_COUNT']) * 100
     result_df = result_df.round({'WEEKLY_PCT': 1})
