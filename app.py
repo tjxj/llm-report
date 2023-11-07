@@ -1369,12 +1369,12 @@ with usage_col[0]:
     if chat_numbers_percent_options=='% Usage':
        y_var = "WEEKLY_APP_PCT"
        y_title = "Weekly % of Total Usage"
-       alt_text = f'{y_var}:Q'
+       alt_text = alt.Text(f'{y_var}:Q', format='.0%')
         
     if chat_numbers_percent_options=='Count':
        y_var = "WEEKLY_APP_COUNT"
        y_title = "Weekly App Count"
-       alt_text = alt.Text(f'{y_var}:Q', format='.1%')
+       alt_text = f'{y_var}:Q'
 
     # Plotting
     # Create a selection that chooses the nearest point & selects based on x-value
@@ -1416,7 +1416,7 @@ with usage_col[1]:
     st.markdown(f"""
         ### :orange[**{st_chat_input_and_chat_message_pct}**%] of total apps (and growing weekly) are chatbots
 
-        Chatbots let users iteratively refine answers, leaving room for fluid, human-like conversations with the LLM. Chatbots are also on the rise as indicated by their weekly % of total usage reaching :orange[**{recent_chat_apps_pct}%**].
+        Chatbots let users iteratively refine answers, leaving room for fluid, human-like conversations with the LLM. Chatbots are also on the rise as indicated by their weekly % of total usage reaching :orange[**{math.ceil(recent_chat_apps_pct*100)}%**].
 
         Conversely, :orange[**{100-st_chat_input_and_chat_message_pct}**%] of total apps use text inputs with a single objective, generally not allowing for conversational refinement.
 
