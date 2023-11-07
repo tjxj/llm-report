@@ -710,7 +710,7 @@ with tab1:
     # opensource_models = ['huggingface_hub', 'llama_cpp', 'pyllamacpp', 'diffusers', 'transformers']
     
     llm_models_options = line_widget_1.multiselect('Select LLM models', llm_models, llm_models)
-    numbers_percent_options = line_widget_2.selectbox('Growth units', ('Count', '% Usage'))
+    numbers_percent_options = line_widget_2.selectbox('Select unit', ('Count', '% Usage'))
 
     # df_llm_models = prepare_data_for_trends_plot(df_llm, llm_models_options)
     # df_llm_models = add_cumulative_column_usage_trends(df, 'SUBDOMAIN', llm_models_options)
@@ -793,7 +793,7 @@ with tab2:
     
     proprietary_models_options = line_widget_1.multiselect('Select proprietary models', proprietary_models, proprietary_models)
     opensource_models_options = line_widget_2.multiselect('Select open source models', opensource_models, opensource_models)
-    numbers_percent_options = line_widget_3.selectbox('Growth units', ('Count', '% Usage'), key='tab2_numbers_percent_options')
+    numbers_percent_options = line_widget_3.selectbox('Select unit', ('Count', '% Usage'), key='tab2_numbers_percent_options')
 
     all_llm_models = proprietary_models_options + opensource_models_options
     
@@ -903,7 +903,7 @@ line1, line2 = st.columns((2,1), gap="large")
 orchestration = ['langchain', 'llama_index']
     
 orchestration_options = orchestration_widget_1.multiselect('Select LLM orchestration', orchestration, orchestration, key='key_orchestration_options')
-orchestration_numbers_percent_options = orchestration_widget_2.selectbox('Growth units', ('Count', '% Usage'), key='key_orchestration_percent_options')
+orchestration_numbers_percent_options = orchestration_widget_2.selectbox('Select unit', ('Count', '% Usage'), key='key_orchestration_percent_options')
 
 #df_orchestration = add_cumulative_column_usage_trends(df, 'SUBDOMAIN', orchestration_options)
 #df_orchestration_sort_list = sort_LLM_tools(df_orchestration)
@@ -1004,7 +1004,7 @@ with vector_tab1:
     all_vector_tools = ['pinecone', 'chromadb', 'weaviate', 'elasticsearch', 'faiss', 'pgvector', 'qdrant_client']
     
     vector_tool_options = vector_widget_1.multiselect('Select vector database', all_vector_tools, all_vector_tools, key='vector_tab0_vector_databases_options')
-    vector_tool_numbers_percent_options = vector_widget_2.selectbox('Growth units', ('Count', '% Usage'), key='vector_tab0_vector_numbers_percent_options')
+    vector_tool_numbers_percent_options = vector_widget_2.selectbox('Select unit', ('Count', '% Usage'), key='vector_tab0_vector_numbers_percent_options')
 
     #df_vector_tools = add_cumulative_column_usage_trends(df, 'SUBDOMAIN', vector_tool_options)
 
@@ -1084,7 +1084,7 @@ with vector_tab2:
     vector_databases = ['chromadb', 'pinecone', 'qdrant_client', 'weaviate']
     
     vector_databases_options = vector_widget_1.multiselect('Select vector database', vector_databases, vector_databases, key='vector_tab1_vector_databases_options')
-    vector_numbers_percent_options = vector_widget_2.selectbox('Growth units', ('Count', '% Usage'), key='vector_tab1_vector_numbers_percent_options')
+    vector_numbers_percent_options = vector_widget_2.selectbox('Select unit', ('Count', '% Usage'), key='vector_tab1_vector_numbers_percent_options')
 
     #df_vector_databases = add_cumulative_column_usage_trends(df, 'SUBDOMAIN', vector_databases_options)
 
@@ -1163,7 +1163,7 @@ with vector_tab3:
     vector_search_engines = ['elasticsearch', 'faiss', 'pgvector', 'qdrant_client']
 
     vector_search_options = vector_widget_1.multiselect('Select vector search', vector_search_engines, vector_search_engines, key='vector_tab2_vector_search_engines_options')
-    vector_search_numbers_percent_options = vector_widget_2.selectbox('Growth units', ('Count', '% Usage'), key='vector_tab2_vector_search_numbers_percent_options')
+    vector_search_numbers_percent_options = vector_widget_2.selectbox('Select unit', ('Count', '% Usage'), key='vector_tab2_vector_search_numbers_percent_options')
 
     #df_vector_search_engines = add_cumulative_column_usage_trends(df, 'SUBDOMAIN', vector_search_options)
 
@@ -1244,7 +1244,7 @@ with vector_tab4:
     
     proprietary_vector_options = vector_line_widget_1.multiselect('Select proprietary tools', proprietary_vector_databases, proprietary_vector_databases)
     opensource_vector_options = vector_line_widget_2.multiselect('Select open source tools', opensource_vector_databases, opensource_vector_databases)
-    vector_numbers_percent_options = vector_line_widget_3.selectbox('Growth units', ('Count', '% Usage'), key='vector_tab3_vector_numbers_percent_options')
+    vector_numbers_percent_options = vector_line_widget_3.selectbox('Select unit', ('Count', '% Usage'), key='vector_tab3_vector_numbers_percent_options')
 
     all_vector_databases = proprietary_vector_options + opensource_vector_options
  
@@ -1352,7 +1352,7 @@ recent_chat_apps_pct = calculate_chat_most_recent_week_pct(df_weekly_chat_app)
 usage_col = st.columns((2,1), gap="large")
 
 with usage_col[0]:
-    chat_numbers_percent_options = st.selectbox('Growth units', ('% Usage', 'Count'), key='key_chat_numbers_percent_options')
+    chat_numbers_percent_options = st.selectbox('Select unit', ('% Usage', 'Count'), key='key_chat_numbers_percent_options')
 
     if chat_numbers_percent_options=='% Usage':
        y_var = "WEEKLY_APP_PCT"
