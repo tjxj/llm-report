@@ -810,8 +810,8 @@ def add_cumulative_column_usage_trends(input_df, input_type, models_selections):
 # Prepare weekly chat/single text input app data
 @st.cache_data
 def load_weekly_chat_app(input_df):
-  most_recent_start_week = input_df['WEEK_START'].max()
-  input_df = input_df[input_df['WEEK_START'] < most_recent_start_week]
+  #most_recent_start_week = input_df['WEEK_START'].max()
+  #input_df = input_df[input_df['WEEK_START'] < most_recent_start_week]
     
   df_list = []
   for i in ['chat', 'single text input']:
@@ -832,8 +832,8 @@ def load_weekly_chat_app(input_df):
     total_weekly_app_count = [(input_df[input_df.WEEK_START == x]['SUBDOMAIN'].nunique()) for x in input_df['WEEK_START'].unique()]
     df2 = pd.DataFrame({'WEEK_START': week_list, 'WEEKLY_APP_COUNT': subdomains_list, 'TOTAL_WEEKLY_APP_COUNT': total_weekly_app_count}) # 'CUMULATIVE_WEEKLY_APP_COUNT': cumulative_list,
     df2['WEEKLY_APP_PCT'] = df2['WEEKLY_APP_COUNT']/df2['TOTAL_WEEKLY_APP_COUNT']
-    df2['WEEKLY_APP_PCT'] = df2['WEEKLY_APP_PCT'].apply(lambda x: x*100)
-    df2['WEEKLY_APP_PCT'] = df2['WEEKLY_APP_PCT'].astype('int')
+    #df2['WEEKLY_APP_PCT'] = df2['WEEKLY_APP_PCT'].apply(lambda x: x*100)
+    #df2['WEEKLY_APP_PCT'] = df2['WEEKLY_APP_PCT'].astype('int')
     df2['APP_TYPE'] = i
     df_list.append(df2)
   df3 = pd.concat(df_list, axis=0)
