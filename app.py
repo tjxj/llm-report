@@ -722,7 +722,7 @@ with tab1:
        
     if numbers_percent_options=='% Growth':
        y_var = "WEEKLY_PCT"
-       y_title = "Relative Weekly App Growth (%)"
+       y_title = "Weekly % of Total Usage"
 
 
     df_llm = df[df.LLM_MODEL.isin(llm_models_options)]
@@ -809,7 +809,7 @@ with tab2:
        y_title = "Weekly App Count"
     if numbers_percent_options=='% Growth':
        y_var = "WEEKLY_PCT"
-       y_title = "Relative Weekly App Growth (%)"
+       y_title = "Weekly % of Total Usage"
 
 
     df_llm_model_type_sort_list = sort_opensource_tools(df_llm_model_type, y_var)
@@ -914,7 +914,7 @@ if orchestration_numbers_percent_options=='Count':
     y_title = "Weekly App Count"
 if orchestration_numbers_percent_options=='% Growth':
     y_var = "WEEKLY_PCT"
-    y_title = "Relative Weekly App Growth (%)"
+    y_title = "Weekly % of Total Usage"
 
 df_orchestration = df[df.LLM_MODEL.isin(orchestration_options)]
 df_orchestration_tools =  calculate_weekly_app_count(df_orchestration)
@@ -1015,7 +1015,7 @@ with vector_tab1:
        y_title = "Weekly App Count"
     if vector_tool_numbers_percent_options=='% Growth':
        y_var = "WEEKLY_PCT"
-       y_title = "Relative Weekly App Growth (%)"
+       y_title = "Weekly % of Total Usage"
         
     df_vector = df[df.LLM_MODEL.isin(vector_tool_options)]
     df_vector_tools =  calculate_weekly_app_count(df_vector)
@@ -1094,7 +1094,7 @@ with vector_tab2:
        y_title = "Weekly App Count"
     if vector_numbers_percent_options=='% Growth':
        y_var = "WEEKLY_PCT"
-       y_title = "Relative Weekly App Growth (%)"
+       y_title = "Weekly % of Total Usage"
         
     df_vector_db = df[df.LLM_MODEL.isin(vector_databases_options)]
     df_vector_databases =  calculate_weekly_app_count(df_vector_db)
@@ -1173,7 +1173,7 @@ with vector_tab3:
        y_title = "Weekly App Count"
     if vector_search_numbers_percent_options=='% Growth':
        y_var = "WEEKLY_PCT"
-       y_title = "Relative Weekly App Growth (%)"
+       y_title = "Weekly % of Total Usage"
 
     df_vector_search = df[df.LLM_MODEL.isin(vector_search_options)]
     df_vector_search_engines =  calculate_weekly_app_count(df_vector_search)
@@ -1254,7 +1254,7 @@ with vector_tab4:
        y_title = "Weekly App Count"
     if vector_numbers_percent_options=='% Growth':
        y_var = "WEEKLY_PCT"
-       y_title = "Relative Weekly App Growth (%)"
+       y_title = "Weekly % of Total Usage"
 
 
     df_vector_proprietary_opensource_type = add_cumulative_column_proprietary_opensource(df, 'SUBDOMAIN', proprietary_vector_options, opensource_vector_options, 'tools')
@@ -1356,7 +1356,7 @@ with usage_col[0]:
 
     if chat_numbers_percent_options=='% Growth':
        y_var = "WEEKLY_APP_PCT"
-       y_title = "Relative Weekly App Growth (%)"
+       y_title = "Weekly % of Total Usage"
         
     if chat_numbers_percent_options=='Count':
        y_var = "WEEKLY_APP_COUNT"
