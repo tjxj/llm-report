@@ -718,10 +718,12 @@ with tab1:
     if numbers_percent_options=='Count':
        y_var = "WEEKLY_APP_COUNT"
        y_title = "Weekly App Count"
+       alt_text = f'{y_var}:Q'
        
     if numbers_percent_options=='% Usage':
        y_var = "WEEKLY_PCT"
        y_title = "Weekly % of Total Usage"
+       alt_text = alt.Text(f'{y_var}:Q', format='.1%')
 
 
     df_llm = df[df.LLM_MODEL.isin(llm_models_options)]
@@ -756,7 +758,7 @@ with tab1:
     points = line.mark_point().encode(opacity=alt.condition(nearest, alt.value(1), alt.value(0)))
     
     # Draw text labels near the points, and highlight based on selection
-    text = line.mark_text(align='left', dx=0, dy=-15, fontSize=16).encode(text=alt.condition(nearest, f'{y_var}:Q', alt.value(' ')))
+    text = line.mark_text(align='left', dx=0, dy=-15, fontSize=16).encode(text=alt.condition(nearest, alt_text, alt.value(' ')))
     
     # Draw a rule at the location of the selection
     rules = alt.Chart(df_llm_models).mark_rule(color='gray').encode(x='WEEK_START:T',).transform_filter(nearest)
@@ -853,7 +855,7 @@ with tab2:
     llm_points = llm_line.mark_point().encode(opacity=alt.condition(llm_nearest, alt.value(1), alt.value(0)))
     
     # Draw text labels near the points, and highlight based on selection
-    llm_text = llm_line.mark_text(align='left', dx=0, dy=-15, fontSize=16).encode(text=alt.condition(llm_nearest, f'{y_var}:Q', alt.value(' ')))
+    llm_text = llm_line.mark_text(align='left', dx=0, dy=-15, fontSize=16).encode(text=alt.condition(llm_nearest, alt_text, alt.value(' ')))
     
     # Draw a rule at the location of the selection
     llm_rules = alt.Chart(df_llm_model_type).mark_rule(color='gray').encode(x='WEEK_START:T',).transform_filter(llm_nearest)
@@ -911,9 +913,12 @@ orchestration_numbers_percent_options = orchestration_widget_2.selectbox('Select
 if orchestration_numbers_percent_options=='Count':
     y_var = "WEEKLY_APP_COUNT"
     y_title = "Weekly App Count"
+    alt_text = f'{y_var}:Q'
 if orchestration_numbers_percent_options=='% Usage':
     y_var = "WEEKLY_PCT"
     y_title = "Weekly % of Total Usage"
+    alt_text = alt.Text(f'{y_var}:Q', format='.1%')
+       
 
 df_orchestration = df[df.LLM_MODEL.isin(orchestration_options)]
 df_orchestration_tools =  calculate_weekly_app_count(df_orchestration, df, orchestration_options)
@@ -946,7 +951,7 @@ orchestration_selectors = alt.Chart(df_orchestration_tools).mark_point().encode(
 orchestration_points = orchestration_line.mark_point().encode(opacity=alt.condition(orchestration_nearest, alt.value(1), alt.value(0)))
     
 # Draw text labels near the points, and highlight based on selection
-orchestration_text = orchestration_line.mark_text(align='left', dx=0, dy=-15, fontSize=16).encode(text=alt.condition(orchestration_nearest, f'{y_var}:Q', alt.value(' ')))
+orchestration_text = orchestration_line.mark_text(align='left', dx=0, dy=-15, fontSize=16).encode(text=alt.condition(orchestration_nearest, alt_text, alt.value(' ')))
     
 # Draw a rule at the location of the selection
 orchestration_rules = alt.Chart(df_orchestration_tools).mark_rule(color='gray').encode(x='WEEK_START:T',).transform_filter(orchestration_nearest)
@@ -1012,9 +1017,11 @@ with vector_tab1:
     if vector_tool_numbers_percent_options=='Count':
        y_var = "WEEKLY_APP_COUNT"
        y_title = "Weekly App Count"
+       alt_text = f'{y_var}:Q'
     if vector_tool_numbers_percent_options=='% Usage':
        y_var = "WEEKLY_PCT"
        y_title = "Weekly % of Total Usage"
+       alt_text = alt.Text(f'{y_var}:Q', format='.1%')
         
     df_vector = df[df.LLM_MODEL.isin(vector_tool_options)]
     df_vector_tools =  calculate_weekly_app_count(df_vector, df, vector_tool_options)
@@ -1046,7 +1053,7 @@ with vector_tab1:
     vector0_points = vector0_line.mark_point().encode(opacity=alt.condition(vector0_nearest, alt.value(1), alt.value(0)))
     
     # Draw text labels near the points, and highlight based on selection
-    vector0_text = vector0_line.mark_text(align='left', dx=0, dy=-15, fontSize=16).encode(text=alt.condition(vector0_nearest, f'{y_var}:Q', alt.value(' ')))
+    vector0_text = vector0_line.mark_text(align='left', dx=0, dy=-15, fontSize=16).encode(text=alt.condition(vector0_nearest, alt_text, alt.value(' ')))
     
     # Draw a rule at the location of the selection
     vector0_rules = alt.Chart(df_vector_tools).mark_rule(color='gray').encode(x='WEEK_START:T',).transform_filter(vector0_nearest)
@@ -1091,9 +1098,11 @@ with vector_tab2:
     if vector_numbers_percent_options=='Count':
        y_var = "WEEKLY_APP_COUNT"
        y_title = "Weekly App Count"
+       alt_text = f'{y_var}:Q'
     if vector_numbers_percent_options=='% Usage':
        y_var = "WEEKLY_PCT"
        y_title = "Weekly % of Total Usage"
+       alt_text = alt.Text(f'{y_var}:Q', format='.1%')
         
     df_vector_db = df[df.LLM_MODEL.isin(vector_databases_options)]
     df_vector_databases =  calculate_weekly_app_count(df_vector_db, df, vector_databases_options)
@@ -1126,7 +1135,7 @@ with vector_tab2:
     vector1_points = vector1_line.mark_point().encode(opacity=alt.condition(vector1_nearest, alt.value(1), alt.value(0)))
     
     # Draw text labels near the points, and highlight based on selection
-    vector1_text = vector1_line.mark_text(align='left', dx=0, dy=-15, fontSize=16).encode(text=alt.condition(vector1_nearest, f'{y_var}:Q', alt.value(' ')))
+    vector1_text = vector1_line.mark_text(align='left', dx=0, dy=-15, fontSize=16).encode(text=alt.condition(vector1_nearest, alt_text, alt.value(' ')))
     
     # Draw a rule at the location of the selection
     vector1_rules = alt.Chart(df_vector_databases).mark_rule(color='gray').encode(x='WEEK_START:T',).transform_filter(vector1_nearest)
@@ -1170,9 +1179,11 @@ with vector_tab3:
     if vector_search_numbers_percent_options=='Count':
        y_var = "WEEKLY_APP_COUNT"
        y_title = "Weekly App Count"
+       alt_text = f'{y_var}:Q'
     if vector_search_numbers_percent_options=='% Usage':
        y_var = "WEEKLY_PCT"
        y_title = "Weekly % of Total Usage"
+       alt_text = alt.Text(f'{y_var}:Q', format='.1%')
 
     df_vector_search = df[df.LLM_MODEL.isin(vector_search_options)]
     df_vector_search_engines =  calculate_weekly_app_count(df_vector_search, df, vector_search_options)
@@ -1206,7 +1217,7 @@ with vector_tab3:
     vector3_points = vector3_line.mark_point().encode(opacity=alt.condition(vector3_nearest, alt.value(1), alt.value(0)))
     
     # Draw text labels near the points, and highlight based on selection
-    vector3_text = vector3_line.mark_text(align='left', dx=0, dy=-15, fontSize=16).encode(text=alt.condition(vector3_nearest, f'{y_var}:Q', alt.value(' ')))
+    vector3_text = vector3_line.mark_text(align='left', dx=0, dy=-15, fontSize=16).encode(text=alt.condition(vector3_nearest, alt_text, alt.value(' ')))
     
     # Draw a rule at the location of the selection
     vector3_rules = alt.Chart(df_vector_search_engines).mark_rule(color='gray').encode(x='WEEK_START:T',).transform_filter(vector3_nearest)
@@ -1251,9 +1262,11 @@ with vector_tab4:
     if vector_numbers_percent_options=='Count':
        y_var = "WEEKLY_APP_COUNT"
        y_title = "Weekly App Count"
+       alt_text = f'{y_var}:Q'
     if vector_numbers_percent_options=='% Usage':
        y_var = "WEEKLY_PCT"
        y_title = "Weekly % of Total Usage"
+       alt_text = alt.Text(f'{y_var}:Q', format='.1%')
 
 
     df_vector_proprietary_opensource_type = add_cumulative_column_proprietary_opensource(df, 'SUBDOMAIN', proprietary_vector_options, opensource_vector_options, 'tools')
@@ -1301,7 +1314,7 @@ with vector_tab4:
     vector4_points = vector4_line.mark_point().encode(opacity=alt.condition(vector4_nearest, alt.value(1), alt.value(0)))
     
     # Draw text labels near the points, and highlight based on selection
-    vector4_text = vector4_line.mark_text(align='left', dx=0, dy=-15, fontSize=16).encode(text=alt.condition(vector4_nearest, f'{y_var}:Q', alt.value(' ')))
+    vector4_text = vector4_line.mark_text(align='left', dx=0, dy=-15, fontSize=16).encode(text=alt.condition(vector4_nearest, alt_text, alt.value(' ')))
     
     # Draw a rule at the location of the selection
     vector4_rules = alt.Chart(df_vector_proprietary_opensource_type).mark_rule(color='gray').encode(x='WEEK_START:T',).transform_filter(vector4_nearest)
@@ -1356,10 +1369,12 @@ with usage_col[0]:
     if chat_numbers_percent_options=='% Usage':
        y_var = "WEEKLY_APP_PCT"
        y_title = "Weekly % of Total Usage"
+       alt_text = f'{y_var}:Q'
         
     if chat_numbers_percent_options=='Count':
        y_var = "WEEKLY_APP_COUNT"
        y_title = "Weekly App Count"
+       alt_text = alt.Text(f'{y_var}:Q', format='.1%')
 
     # Plotting
     # Create a selection that chooses the nearest point & selects based on x-value
@@ -1382,7 +1397,7 @@ with usage_col[0]:
     chat_points = chat_line.mark_point().encode(opacity=alt.condition(chat_nearest, alt.value(1), alt.value(0)))
         
     # Draw text labels near the points, and highlight based on selection
-    chat_text = chat_line.mark_text(align='left', dx=0, dy=-15, fontSize=16).encode(text=alt.condition(chat_nearest, f'{y_var}:Q', alt.value(' ')))
+    chat_text = chat_line.mark_text(align='left', dx=0, dy=-15, fontSize=16).encode(text=alt.condition(chat_nearest, alt_text, alt.value(' ')))
         
     # Draw a rule at the location of the selection
     chat_rules = alt.Chart(df_weekly_chat_app).mark_rule(color='gray').encode(x='WEEK_START:T',).transform_filter(chat_nearest)
