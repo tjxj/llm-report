@@ -725,7 +725,7 @@ with tab1:
 
 
     df_llm = df[df.LLM_MODEL.isin(llm_models_options)]
-    df_llm_models =  calculate_weekly_app_count(df_llm)
+    df_llm_models =  calculate_weekly_app_count(df_llm, df, llm_models_options)
     
     df_llm_models_sort_list = sort_LLM_tools(df_llm_models, y_var)
 
@@ -916,7 +916,7 @@ if orchestration_numbers_percent_options=='% Usage':
     y_title = "Weekly % of Total Usage"
 
 df_orchestration = df[df.LLM_MODEL.isin(orchestration_options)]
-df_orchestration_tools =  calculate_weekly_app_count(df_orchestration)
+df_orchestration_tools =  calculate_weekly_app_count(df_orchestration, df, orchestration_options)
 df_orchestration_tools_sort_list = sort_LLM_tools(df_orchestration_tools, y_var)
 
 
@@ -1017,7 +1017,7 @@ with vector_tab1:
        y_title = "Weekly % of Total Usage"
         
     df_vector = df[df.LLM_MODEL.isin(vector_tool_options)]
-    df_vector_tools =  calculate_weekly_app_count(df_vector)
+    df_vector_tools =  calculate_weekly_app_count(df_vector, df, vector_tool_options)
     df_vector_tools_sort_list = sort_LLM_tools(df_vector_tools, y_var)
     
     ## df_llm.LLM_MODEL = [x.replace('"', '') for x in df_llm.LLM_MODEL]
@@ -1096,7 +1096,7 @@ with vector_tab2:
        y_title = "Weekly % of Total Usage"
         
     df_vector_db = df[df.LLM_MODEL.isin(vector_databases_options)]
-    df_vector_databases =  calculate_weekly_app_count(df_vector_db)
+    df_vector_databases =  calculate_weekly_app_count(df_vector_db, df, vector_databases_options)
     df_vector_databases_sort_list = sort_LLM_tools(df_vector_databases, y_var)  
 
     
@@ -1175,7 +1175,7 @@ with vector_tab3:
        y_title = "Weekly % of Total Usage"
 
     df_vector_search = df[df.LLM_MODEL.isin(vector_search_options)]
-    df_vector_search_engines =  calculate_weekly_app_count(df_vector_search)
+    df_vector_search_engines =  calculate_weekly_app_count(df_vector_search, df, vector_search_options)
     df_vector_search_engines_sort_list = sort_LLM_tools(df_vector_search_engines, y_var)
     
     
