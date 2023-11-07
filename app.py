@@ -1878,7 +1878,9 @@ Streamlit may use personal information and other information to create de-identi
 The dataset associated with this Streamlit app contains no personally identifiable information (PII). This includes but is not limited to names, addresses, phone numbers, email addresses, or any other sensitive personal information.
 
 ### Data Analysis and Visualization
-Data wrangling is performed using `pandas`, visualized using `altair` and interactive widgets are provided herein to allow users to retrieve data subsets or views of interest. App screenshots used in the gallery section are dynamically retrieved via `selenium` and `chromium`. Weekly % of Total Usage is calculated as the weekly ratio of apps using an LLM tool of interest to the total number of apps.
+Data wrangling is performed using `pandas`, visualized using `altair` and interactive widgets are provided herein to allow users to retrieve data subsets or views of interest. App screenshots used in the gallery section are dynamically retrieved via `selenium` and `chromium`. 
+
+Data is aggregated as weekly data where each data point in a plot represents a full week consisting of 7 days, for example, a date of October 23, 2023 represents the duration of October 23-30, 2023. Weekly % of Total Usage is calculated as the weekly ratio of apps using an LLM tool of interest to the total number of apps.
 ''')
 
 
