@@ -143,7 +143,7 @@ main_page()
 
 load_footer()
 
-add_vertical_space(1.5)
+add_vertical_space(1)
 
 # Page 2
 st.markdown("""
