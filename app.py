@@ -1402,7 +1402,7 @@ with usage_col[1]:
     st.markdown(f"""
         ### :orange[**{st_chat_input_and_chat_message_pct}**%] of total apps (and growing weekly) are chatbots
 
-        Chatbots let users iteratively refine answers, leaving room for fluid, human-like conversations with the LLM. Chatbots are also on the rise as indicated by their weekly growth to :orange[**{recent_chat_apps_pct}%**].
+        Chatbots let users iteratively refine answers, leaving room for fluid, human-like conversations with the LLM. Chatbots are also on the rise as indicated by their weekly % of total usage reaching :orange[**{recent_chat_apps_pct}%**].
 
         Conversely, :orange[**{100-st_chat_input_and_chat_message_pct}**%] of total apps use text inputs with a single objective, generally not allowing for conversational refinement.
 
@@ -1864,8 +1864,7 @@ Streamlit may use personal information and other information to create de-identi
 The dataset associated with this Streamlit app contains no personally identifiable information (PII). This includes but is not limited to names, addresses, phone numbers, email addresses, or any other sensitive personal information.
 
 ### Data Analysis and Visualization
-Data wrangling is performed using `pandas`, visualized using `altair` and interactive widgets are provided herein to allow users to retrieve data subsets or views of interest. App screenshots used in the gallery section are dynamically retrieved via `selenium` and `chromium`.
-
+Data wrangling is performed using `pandas`, visualized using `altair` and interactive widgets are provided herein to allow users to retrieve data subsets or views of interest. App screenshots used in the gallery section are dynamically retrieved via `selenium` and `chromium`. Weekly % of Total Usage is calculated as the weekly ratio of apps using an LLM tool of interest to the total number of apps.
 ''')
 
 
