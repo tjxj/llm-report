@@ -888,7 +888,7 @@ def redirect_button(url: str, text: str= None, color="#F63366"):
     <a href="{url}" target="_self">
         <div style="
             display: inline-block;
-            padding: 0.5em 1em;
+            padding: 0.5em 0.5em;
             color: #FFFFFF;
             background-color: {color};
             border-radius: 3px;
