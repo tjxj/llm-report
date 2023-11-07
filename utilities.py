@@ -855,31 +855,68 @@ def sort_opensource_tools(input_df, input_column):
     average_weekly_app_count = df_recent_weeks.groupby('MODEL_TYPE')[input_column].mean()
     sorted_models = average_weekly_app_count.sort_values(ascending=False)
     return sorted_models.reset_index().iloc[:,0].to_list()
-    
-def calculate_weekly_app_count(input_df):
+
+
+#def calculate_weekly_app_count(input_df):
+#    # Step 1: Calculate WEEKLY_APP_COUNT for each LLM_MODEL
+#    weekly_app_count_df = input_df.groupby(['LLM_MODEL', 'WEEK_START'])['SUBDOMAIN'].nunique().reset_index()
+#    weekly_app_count_df.rename(columns={'SUBDOMAIN': 'WEEKLY_APP_COUNT'}, inplace=True)
+
+#    # Step 2: Calculate TOTAL_WEEKLY_APP_COUNT for each LLM_MODEL and WEEK_START
+#    total_weekly_app_count_df = input_df.groupby(['LLM_MODEL', 'WEEK_START'])['SUBDOMAIN'].nunique().groupby('LLM_MODEL').transform('sum').reset_index()
+#    total_weekly_app_count_df.rename(columns={'SUBDOMAIN': 'TOTAL_WEEKLY_APP_COUNT'}, inplace=True)
+
+#    # Step 3: Replace missing values in the TOTAL_WEEKLY_APP_COUNT column with 'NA'
+#    total_weekly_app_count_df['TOTAL_WEEKLY_APP_COUNT'].fillna('NA', inplace=True)
+
+#    # Merge the two DataFrames
+#    result_df = weekly_app_count_df.merge(total_weekly_app_count_df, on=['LLM_MODEL', 'WEEK_START'], how='right')
+
+#    # If you want to replace NaN values in WEEKLY_APP_COUNT with 'NA' as well:
+#    result_df['WEEKLY_APP_COUNT'].fillna('NA', inplace=True)
+#    result_df['WEEKLY_PCT'] = (result_df['WEEKLY_APP_COUNT']/result_df['TOTAL_WEEKLY_APP_COUNT']) * 100
+#    result_df = result_df.round({'WEEKLY_PCT': 1})
+
+#    return result_df
+
+def calculate_weekly_app_count(input_df, input_df_full, input_tool_options):
     # Step 1: Calculate WEEKLY_APP_COUNT for each LLM_MODEL
     weekly_app_count_df = input_df.groupby(['LLM_MODEL', 'WEEK_START'])['SUBDOMAIN'].nunique().reset_index()
     weekly_app_count_df.rename(columns={'SUBDOMAIN': 'WEEKLY_APP_COUNT'}, inplace=True)
 
-    # Step 2: Calculate TOTAL_WEEKLY_APP_COUNT for each LLM_MODEL and WEEK_START
-    total_weekly_app_count_df = input_df.groupby(['LLM_MODEL', 'WEEK_START'])['SUBDOMAIN'].nunique().groupby('LLM_MODEL').transform('sum').reset_index()
-    total_weekly_app_count_df.rename(columns={'SUBDOMAIN': 'TOTAL_WEEKLY_APP_COUNT'}, inplace=True)
+    # Calculate the unique 'WEEK_START' values
+    unique_week_starts = input_df_full['WEEK_START'].unique()
 
-    # Step 3: Replace missing values in the TOTAL_WEEKLY_APP_COUNT column with 'NA'
-    total_weekly_app_count_df['TOTAL_WEEKLY_APP_COUNT'].fillna('NA', inplace=True)
+    # Create an empty list to store the WEEKLY_APP_COUNT values
+    weekly_app_count_list = []
+
+    # Iterate over unique 'LLM_MODEL' values
+    for llm_model in input_tool_options:
+        # Repeat the values for each 'LLM_MODEL' according to the number of unique 'WEEK_START' values
+        repeated_values = input_df_full[input_df_full['WEEK_START'].isin(unique_week_starts)].groupby('WEEK_START')['SUBDOMAIN'].nunique().reset_index()
+
+        repeated_values['SUBDOMAIN'].fillna('NA', inplace=True)
+        repeated_values.rename(columns={'SUBDOMAIN': 'TOTAL_WEEKLY_APP_COUNT'}, inplace=True)
+
+        repeated_values['LLM_MODEL'] = llm_model  # Add the 'LLM_MODEL' column
+        #weekly_app_count_list.extend(repeated_values['SUBDOMAIN'])
+        weekly_app_count_list.append(repeated_values)
+
+    total_weekly_app_df = pd.concat(weekly_app_count_list, axis=0)
 
     # Merge the two DataFrames
-    result_df = weekly_app_count_df.merge(total_weekly_app_count_df, on=['LLM_MODEL', 'WEEK_START'], how='right')
+    result_df = weekly_app_count_df.merge(total_weekly_app_df, on=['LLM_MODEL', 'WEEK_START'], how='right')
 
     # If you want to replace NaN values in WEEKLY_APP_COUNT with 'NA' as well:
     result_df['WEEKLY_APP_COUNT'].fillna('NA', inplace=True)
+    result_df = result_df[result_df['WEEKLY_APP_COUNT'] != 'NA']
+
     result_df['WEEKLY_PCT'] = (result_df['WEEKLY_APP_COUNT']/result_df['TOTAL_WEEKLY_APP_COUNT']) * 100
     result_df = result_df.round({'WEEKLY_PCT': 1})
 
     return result_df
 
-# calculate_weekly_app_count(df_llm)
-
+# calculate_weekly_app_count(input_df, input_df_full, input_tool_options)
 
 
 def redirect_button(url: str, text: str= None, color="#F63366"):
